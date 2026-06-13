@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iZone — iPhones & AirPods Colombia</title>
+<meta name="description" content="iZone: la tienda de confianza para comprar iPhones y AirPods en Colombia. Nuevos, usados y reacondicionados con garantía. Envíos a todo el país.">
+<meta name="keywords" content="iphone colombia, airpods colombia, iphone cali, comprar iphone, izone, celulares apple colombia">
+<meta property="og:title" content="iZone — iPhones & AirPods Colombia">
+<meta property="og:description" content="La tienda Apple más confiable de Colombia. Garantía, envíos y precios reales.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #080808;
+    --bg2: #111111;
+    --bg3: #181818;
+    --border: rgba(255,255,255,0.08);
+    --border2: rgba(255,255,255,0.14);
+    --text: #f0f0f0;
+    --muted: #888;
+    --dim: #444;
+    --blue: #4db2ff;
+    --green: #30d158;
+    --red: #ff3b30;
+    --gold: #ffd60a;
+    --purple: #bf5af2;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    height: 60px;
+    background: rgba(8,8,8,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px;
+    background: #fff;
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .logo-mark svg { width: 22px; height: 22px; }
+  .logo-text {
+    font-size: 20px; font-weight: 800;
+    letter-spacing: -0.5px; color: #fff;
+  }
+  .logo-tld { color: var(--blue); font-weight: 400; font-size: 14px; }
+
+  .nav-links {
+    display: flex; gap: 28px; list-style: none;
+  }
+  .nav-links a {
+    font-size: 14px; color: var(--muted);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; }
+
+  .nav-cta {
+    background: #fff; color: #000;
+    font-size: 13px; font-weight: 600;
+    padding: 8px 18px; border-radius: 20px;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: #fff; border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(77,178,255,0.08) 0%, transparent 70%);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -55%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(77,178,255,0.1);
+    border: 0.5px solid rgba(77,178,255,0.3);
+    color: var(--blue);
+    font-size: 12px; font-weight: 600; letter-spacing: 1px;
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+  .badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--blue);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+
+  .hero-sub {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: var(--muted);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+
+  .hero-actions {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  }
+  .btn-main {
+    background: #fff; color: #000;
+    font-size: 15px; font-weight: 700;
+    padding: 14px 32px; border-radius: 28px;
+    transition: transform 0.2s, opacity 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-main:hover { transform: translateY(-1px); opacity: 0.9; }
+  .btn-ghost {
+    background: transparent; color: #fff;
+    font-size: 15px; font-weight: 600;
+    padding: 14px 32px; border-radius: 28px;
+    border: 0.5px solid var(--border2);
+    transition: background 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.06); }
+
+  .hero-trust {
+    margin-top: 60px;
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap;
+  }
+  .trust-item {
+    text-align: center;
+  }
+  .trust-num {
+    font-size: 28px; font-weight: 800; color: #fff; display: block;
+  }
+  .trust-label {
+    font-size: 12px; color: var(--muted); letter-spacing: 0.5px;
+  }
+
+  /* SECTION BASE */
+  section { padding: 90px 5%; }
+  .section-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--blue); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800; letter-spacing: -1px;
+    color: #fff; margin-bottom: 14px;
+  }
+  .section-sub {
+    font-size: 16px; color: var(--muted);
+    max-width: 520px; line-height: 1.6;
+  }
+  .section-head { margin-bottom: 50px; }
+
+  /* PRODUCTS */
+  .products-bg { background: var(--bg2); }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .product-card {
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .product-card:hover {
+    border-color: var(--border2);
+    transform: translateY(-3px);
+  }
+
+  .card-badge {
+    position: absolute; top: 16px; right: 16px;
+    font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    padding: 3px 9px; border-radius: 5px;
+    text-transform: uppercase;
+  }
+  .badge-new { background: rgba(77,178,255,0.15); color: var(--blue); }
+  .badge-sale { background: rgba(255,59,48,0.15); color: var(--red); }
+  .badge-hot { background: rgba(255,214,10,0.15); color: var(--gold); }
+  .badge-reac { background: rgba(48,209,88,0.15); color: var(--green); }
+
+  .card-icon { font-size: 42px; margin-bottom: 16px; display: block; }
+
+  .card-name {
+    font-size: 17px; font-weight: 700; color: #fff;
+    margin-bottom: 4px;
+  }
+  .card-spec {
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 16px;
+  }
+  .card-price-row { display: flex; align-items: baseline; gap: 10px; margin-bottom: 16px; }
+  .card-price {
+    font-size: 22px; font-weight: 800; color: #fff;
+  }
+  .card-old {
+    font-size: 14px; color: var(--dim);
+    text-decoration: line-through;
+  }
+  .card-btn {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 0.5px solid var(--border2);
+    color: #fff;
+    font-size: 13px; font-weight: 600;
+    padding: 10px; border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .card-btn:hover { background: rgba(255,255,255,0.12); }
+
+  /* WHY US */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .why-card {
+    background: var(--bg2);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 24px;
+  }
+  .why-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+  .why-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .why-text { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* TESTIMONIALS */
+  .testimonials-bg { background: var(--bg2); }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .testi-card {
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .testi-stars { color: var(--gold); font-size: 14px; margin-bottom: 12px; letter-spacing: 2px; }
+  .testi-text { font-size: 14px; color: #ccc; line-height: 1.7; margin-bottom: 16px; font-style: italic; }
+  .testi-author { display: flex; align-items: center; gap: 10px; }
+  .testi-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(77,178,255,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; color: var(--blue);
+    flex-shrink: 0;
+  }
+  .testi-name { font-size: 14px; font-weight: 600; color: #fff; }
+  .testi-city { font-size: 12px; color: var(--muted); }
+
+  /* PROCESS */
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 0;
+    position: relative;
+  }
+  .step {
+    padding: 32px 28px;
+    border-left: 0.5px solid var(--border);
+    position: relative;
+  }
+  .step:first-child { border-left: none; }
+  .step-num {
+    font-size: 11px; font-weight: 700; letter-spacing: 2px;
+    color: var(--blue); margin-bottom: 16px;
+  }
+  .step-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .step-text { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* CTA FINAL */
+  .cta-section {
+    text-align: center;
+    background: var(--bg2);
+    border-top: 0.5px solid var(--border);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .cta-section .section-title { margin-bottom: 12px; }
+  .cta-section .section-sub { margin: 0 auto 36px; }
+
+  .cta-cards {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 20px;
+  }
+  .cta-card {
+    background: var(--bg3);
+    border: 0.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 28px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 15px; font-weight: 600; color: #fff;
+    transition: border-color 0.2s;
+    cursor: pointer;
+  }
+  .cta-card:hover { border-color: var(--border2); }
+  .cta-card-icon { font-size: 22px; }
+
+  /* FOOTER */
+  footer {
+    padding: 48px 5%;
+    border-top: 0.5px solid var(--border);
+  }
+  .footer-inner {
+    display: flex; align-items: flex-start;
+    justify-content: space-between; gap: 40px; flex-wrap: wrap;
+  }
+  .footer-brand p {
+    font-size: 13px; color: var(--muted); max-width: 260px;
+    line-height: 1.6; margin-top: 10px;
+  }
+  .footer-links h4 { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--muted); text-transform: uppercase; margin-bottom: 14px; }
+  .footer-links ul { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a { font-size: 14px; color: #666; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 0.5px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .footer-bottom p { font-size: 12px; color: var(--dim); }
+  .domain-pill {
+    background: rgba(77,178,255,0.1);
+    border: 0.5px solid rgba(77,178,255,0.2);
+    color: var(--blue);
+    font-size: 12px; font-weight: 600;
+    padding: 4px 12px; border-radius: 12px;
+  }
+
+  /* MOBILE NAV */
+  .mobile-menu {
+    display: none;
+    position: fixed; top: 60px; left: 0; right: 0;
+    background: rgba(8,8,8,0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 20px 5%;
+    z-index: 99;
+    flex-direction: column; gap: 16px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 16px; color: var(--muted); padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+  .mobile-menu a:last-child { border-bottom: none; }
+
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .process-steps { grid-template-columns: 1fr; }
+    .step { border-left: none; border-top: 0.5px solid var(--border); }
+    .step:first-child { border-top: none; }
+    .hero-trust { gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M11 2C8.5 2 7 4.5 7 4.5C7 4.5 5 3 3.5 5C2 7 3.5 9 3.5 9C3.5 9 2 10 2 12C2 14 4 15 4 15C4 15 3.5 17 5 18.5C6.5 20 8.5 19 8.5 19C8.5 19 9.5 20.5 11 20.5C12.5 20.5 13.5 19 13.5 19C13.5 19 15.5 20 17 18.5C18.5 17 18 15 18 15C18 15 20 14 20 12C20 10 18.5 9 18.5 9C18.5 9 20 7 18.5 5C17 3 15 4.5 15 4.5C15 4.5 13.5 2 11 2Z" fill="#000" stroke="#000" stroke-width="0.5"/>
+        <text x="11" y="15" text-anchor="middle" font-size="8" font-weight="900" fill="#fff" font-family="-apple-system,sans-serif">iZ</text>
+      </svg>
+    </div>
+    <span class="logo-text">iZone<span class="logo-tld">.com</span></span>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#por-que">Por qué iZone</a></li>
+    <li><a href="#proceso">Cómo comprar</a></li>
+    <li><a href="#resenas">Reseñas</a></li>
+  </ul>
+
+  <a href="https://wa.me/573000000000?text=Hola!%20Quiero%20info%20de%20iZone" class="nav-cta" target="_blank">WhatsApp →</a>
+
+  <div class="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#productos" onclick="toggleMenu()">Productos</a>
+  <a href="#por-que" onclick="toggleMenu()">Por qué iZone</a>
+  <a href="#proceso" onclick="toggleMenu()">Cómo comprar</a>
+  <a href="#resenas" onclick="toggleMenu()">Reseñas</a>
+  <a href="https://wa.me/573000000000" target="_blank" style="color: #4db2ff;">Escribir al WhatsApp →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div>
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      Tienda online · Cali, Colombia
+    </div>
+    <h1>El iPhone que<br>querés, <em>al precio<br>que merecés.</em></h1>
+    <p class="hero-sub">iPhones y AirPods originales con garantía real. Nuevos, usados y reacondicionados. Envíos a todo Colombia.</p>
+    <div class="hero-actions">
+      <a href="#productos" class="btn-main">Ver catálogo 📱</a>
+      <a href="https://wa.me/573000000000?text=Hola!%20Vi%20izone.com%20y%20quiero%20info" class="btn-ghost" target="_blank">WhatsApp directo</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item">
+        <span class="trust-num">+500</span>
+        <span class="trust-label">clientes satisfechos</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">4.9★</span>
+        <span class="trust-label">calificación promedio</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">24h</span>
+        <span class="trust-label">tiempo de respuesta</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-num">100%</span>
+        <span class="trust-label">originales Apple</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="productos" class="products-bg">
+  <div class="section-head">
+    <p class="section-label">Catálogo</p>
+    <h2 class="section-title">Productos disponibles</h2>
+    <p class="section-sub">Todos los equipos verificados. Precios en pesos colombianos, pagos flexibles.</p>
+  </div>
+
+  <div class="products-grid">
+
+    <div class="product-card">
+      <span class="card-badge badge-new">Nuevo</span>
+      <span class="card-icon">📱</span>
+      <div class="card-name">iPhone 15 Pro</div>
+      <div class="card-spec">Natural Titanium · 128GB · iOS 17</div>
+      <div class="card-price-row">
+        <span class="card-price">$3.200.000</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://wa.me/573000000000?text=Hola!%20Me%20interesa%20el%20iPhone%2015%20Pro')">Consultar disponibilidad →</button>
+    </div>
+
+    <div class="product-card">
+      <span class="card-badge badge-hot">Más vendido</span>
+      <span class="card-icon">📱</span>
+      <div class="card-name">iPhone 15</div>
+      <div class="card-spec">Pink / Black / Blue · 128GB</div>
+      <div class="card-price-row">
+        <span class="card-price">$2.900.000</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://wa.me/573000000000?text=Hola!%20Me%20interesa%20el%20iPhone%2015')">Consultar disponibilidad →</button>
+    </div>
+
+    <div class="product-card">
+      <span class="card-badge badge-reac">Reacondicionado</span>
+      <span class="card-icon">📱</span>
+      <div class="card-name">iPhone 14 Plus</div>
+      <div class="card-spec">Midnight · 256GB · Como nuevo</div>
+      <div class="card-price-row">
+        <span class="card-price">$2.500.000</span>
+        <span class="card-old">$2.800.000</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://wa.me/573000000000?text=Hola!%20Me%20interesa%20el%20iPhone%2014%20Plus')">Consultar disponibilidad →</button>
+    </div>
+
+    <div class="product-card">
+      <span class="card-badge badge-sale">Oferta</span>
+      <span class="card-icon">📱</span>
+      <div class="card-name">iPhone 13</div>
+      <div class="card-spec">128GB · Reacondicionado A+</div>
+      <div class="card-price-row">
+        <span class="card-price">$1.550.000</span>
+        <span class="card-old">$1.800.000</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://wa.me/573000000000?text=Hola!%20Me%20interesa%20el%20iPhone%2013')">Consultar disponibilidad →</button>
+    </div>
+
+    <div class="product-card">
+      <span class="card-badge badge-new">Nuevo</span>
+      <span class="card-icon">🎧</span>
+      <div class="card-name">AirPods Pro 2</div>
+      <div class="card-spec">Cancelación de ruido · USB-C · MagSafe</div>
+      <div class="card-price-row">
+        <span class="card-price">$890.000</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://wa.me/573000000000?text=Hola!%20Me%20interesan%20los%20AirPods%20Pro%202')">Consultar disponibilidad →</button>
+    </div>
+
+    <div class="product-card">
+      <span class="card-badge badge-hot">Nuevo</span>
+      <span class="card-icon">🎧</span>
+      <div class="card-name">AirPods 4</div>
+      <div class="card-spec">ANC · USB-C · 2024</div>
+      <div class="card-price-row">
+        <span class="card-price">$720.000</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://wa.me/573000000000?text=Hola!%20Me%20interesan%20los%20AirPods%204')">Consultar disponibilidad →</button>
+    </div>
+
+    <div class="product-card">
+      <span class="card-badge badge-reac">Reacondicionado</span>
+      <span class="card-icon">🎧</span>
+      <div class="card-name">AirPods 3</div>
+      <div class="card-spec">Lightning · Spatial Audio</div>
+      <div class="card-price-row">
+        <span class="card-price">$420.000</span>
+        <span class="card-old">$500.000</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://wa.me/573000000000?text=Hola!%20Me%20interesan%20los%20AirPods%203')">Consultar disponibilidad →</button>
+    </div>
+
+    <div class="product-card">
+      <span class="card-badge badge-new">Accesorios</span>
+      <span class="card-icon">🔌</span>
+      <div class="card-name">Accesorios Apple</div>
+      <div class="card-spec">Cables, cargadores, cases originales</div>
+      <div class="card-price-row">
+        <span class="card-price">Desde $45.000</span>
+      </div>
+      <button class="card-btn" onclick="window.open('https://wa.me/573000000000?text=Hola!%20Quiero%20info%20de%20accesorios')">Ver opciones →</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="por-que">
+  <div class="section-head">
+    <p class="section-label">Por qué iZone</p>
+    <h2 class="section-title">Comprá con confianza</h2>
+    <p class="section-sub">No somos una tienda anónima. Somos de Cali, conocemos a nuestros clientes y cuidamos cada venta.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <span class="why-icon">✅</span>
+      <h3 class="why-title">100% originales</h3>
+      <p class="why-text">Solo vendemos equipos Apple originales. Cada iPhone y AirPod es verificado antes de salir.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🛡️</span>
+      <h3 class="why-title">Garantía real</h3>
+      <p class="why-text">Garantía de funcionamiento en todos nuestros productos. Si algo falla, lo resolvemos.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">🚀</span>
+      <h3 class="why-title">Envíos a Colombia</h3>
+      <p class="why-text">Enviamos a Bogotá, Medellín, Barranquilla, Cali y todo el país con rastreo incluido.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">💳</span>
+      <h3 class="why-title">Pagos flexibles</h3>
+      <p class="why-text">Transferencia, Nequi, Daviplata o pago contra entrega disponible en Cali.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">💬</span>
+      <h3 class="why-title">Atención humana</h3>
+      <p class="why-text">Te respondemos por WhatsApp en minutos. Sin bots, sin formularios, trato directo.</p>
+    </div>
+    <div class="why-card">
+      <span class="why-icon">📊</span>
+      <h3 class="why-title">Precios honestos</h3>
+      <p class="why-text">Mostramos los precios sin sorpresas. Lo que ves es lo que pagás, sin costos ocultos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="proceso" style="background: var(--bg2);">
+  <div class="section-head">
+    <p class="section-label">Cómo comprar</p>
+    <h2 class="section-title">Tan fácil como 1, 2, 3</h2>
+    <p class="section-sub">Todo se hace por WhatsApp. Sin trámites, sin cuentas, sin complicaciones.</p>
+  </div>
+
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">PASO 01</div>
+      <h3 class="step-title">Elegís tu equipo</h3>
+      <p class="step-text">Revisás el catálogo y nos escribís por WhatsApp con el modelo que te interesa.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">PASO 02</div>
+      <h3 class="step-title">Confirmamos disponibilidad</h3>
+      <p class="step-text">Te mandamos fotos reales del equipo, especificaciones y el precio final sin sorpresas.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">PASO 03</div>
+      <h3 class="step-title">Pagás y coordinas</h3>
+      <p class="step-text">Elegís el método de pago y si querés envío o retiro en Cali. Confirmamos todo.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">PASO 04</div>
+      <h3 class="step-title">Lo recibís</h3>
+      <p class="step-text">Tu equipo llega empacado y verificado. Te mandamos el rastreo en tiempo real.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="resenas" class="testimonials-bg">
+  <div class="section-head">
+    <p class="section-label">Reseñas</p>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+    <p class="section-sub">+500 personas ya compraron con iZone. Estas son algunas de sus historias.</p>
+  </div>
+
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Compré mi iPhone 15 y llegó al día siguiente en perfecto estado. El trato fue súper personalizado, me mandaron video del equipo antes de enviarlo."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MF</div>
+        <div>
+          <div class="testi-name">María Fernanda C.</div>
+          <div class="testi-city">Cali, Valle</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Llevaba meses buscando un iPhone 13 a buen precio. En iZone encontré exactamente lo que necesitaba y con garantía. Recomendadísimo."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">JD</div>
+        <div>
+          <div class="testi-name">Juan Diego M.</div>
+          <div class="testi-city">Bogotá, Cundinamarca</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Los AirPods Pro llegaron en caja sellada, originales 100%. Me respondieron súper rápido por WhatsApp y me explicaron todo el proceso."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">KR</div>
+        <div>
+          <div class="testi-name">Karol R.</div>
+          <div class="testi-city">Medellín, Antioquia</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Segunda compra con iZone. Primero un iPhone 14, ahora los AirPods 4. Siempre cumplieron con todo lo prometido. Ya son mi tienda de confianza."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">SA</div>
+        <div>
+          <div class="testi-name">Santiago A.</div>
+          <div class="testi-city">Cali, Valle</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Muy buena atención. Me ayudaron a elegir entre dos modelos y fueron honestos sobre cuál me convenía más según mi uso. Eso se valora."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">LP</div>
+        <div>
+          <div class="testi-name">Laura P.</div>
+          <div class="testi-city">Barranquilla, Atlántico</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Compré el iPhone 15 Pro en preventa y llegó exactamente cuando dijeron. Todo perfecto, con garantía y el pago fue súper sencillo por Nequi."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AM</div>
+        <div>
+          <div class="testi-name">Andrés M.</div>
+          <div class="testi-city">Pereira, Risaralda</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <p class="section-label">Empezá ahora</p>
+  <h2 class="section-title">¿Listo para tu próximo iPhone?</h2>
+  <p class="section-sub">Escribinos y te ayudamos a encontrar el equipo perfecto para vos, con el mejor precio.</p>
+
+  <div class="cta-cards">
+    <a href="https://wa.me/573000000000?text=Hola%20iZone!%20Quiero%20info%20de%20iPhones" class="cta-card" target="_blank">
+      <span class="cta-card-icon">💬</span>
+      WhatsApp directo
+    </a>
+    <a href="https://instagram.com/izone.col" class="cta-card" target="_blank">
+      <span class="cta-card-icon">📸</span>
+      Instagram @izone.col
+    </a>
+    <a href="mailto:hola@izone.com" class="cta-card">
+      <span class="cta-card-icon">✉️</span>
+      hola@izone.com
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="logo-mark">
+          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11 2C8.5 2 7 4.5 7 4.5C7 4.5 5 3 3.5 5C2 7 3.5 9 3.5 9C3.5 9 2 10 2 12C2 14 4 15 4 15C4 15 3.5 17 5 18.5C6.5 20 8.5 19 8.5 19C8.5 19 9.5 20.5 11 20.5C12.5 20.5 13.5 19 13.5 19C13.5 19 15.5 20 17 18.5C18.5 17 18 15 18 15C18 15 20 14 20 12C20 10 18.5 9 18.5 9C18.5 9 20 7 18.5 5C17 3 15 4.5 15 4.5C15 4.5 13.5 2 11 2Z" fill="#000" stroke="#000" stroke-width="0.5"/>
+            <text x="11" y="15" text-anchor="middle" font-size="8" font-weight="900" fill="#fff" font-family="-apple-system,sans-serif">iZ</text>
+          </svg>
+        </div>
+        <span class="logo-text">iZone<span class="logo-tld">.com</span></span>
+      </div>
+      <p>La tienda Apple más confiable de Colombia. iPhones y AirPods con garantía real, desde Cali para todo el país.</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Productos</h4>
+      <ul>
+        <li><a href="#productos">iPhones</a></li>
+        <li><a href="#productos">AirPods</a></li>
+        <li><a href="#productos">Accesorios</a></li>
+        <li><a href="#productos">Reacondicionados</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Tienda</h4>
+      <ul>
+        <li><a href="#proceso">Cómo comprar</a></li>
+        <li><a href="#resenas">Reseñas</a></li>
+        <li><a href="#por-que">Garantía</a></li>
+        <li><a href="https://wa.me/573000000000" target="_blank">Contacto</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-links">
+      <h4>Síguenos</h4>
+      <ul>
+        <li><a href="https://instagram.com/izone.col" target="_blank">Instagram</a></li>
+        <li><a href="https://wa.me/573000000000" target="_blank">WhatsApp</a></li>
+        <li><a href="mailto:hola@izone.com">Email</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 iZone Colombia. Todos los derechos reservados.</p>
+    <span class="domain-pill">izone.com</span>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('open');
+}
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('mobileMenu');
+  const hamburger = document.querySelector('.hamburger');
+  if (menu.classList.contains('open') && !menu.contains(e.target) && !hamburger.contains(e.target)) {
+    menu.classList.remove('open');
+  }
+});
+</script>
+
+</body>
+</html>
